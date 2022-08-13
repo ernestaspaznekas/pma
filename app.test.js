@@ -42,7 +42,7 @@ const txs = [
     },
 ]
 
-describe('Wallet', () => {
+describe('Creat wallets', () => {
     it('POST /wallet => create first wallet', () => {
         return (
             request(app)
@@ -122,6 +122,25 @@ describe('Wallet', () => {
         )
     })
 
+    it('GET /wallet/2 => get missing wallet', () => {
+        return (
+            request(app)
+            .get('/wallet/2')
+            .expect('Content-Type', /json/)
+            .expect(404)
+            .then((response) => {
+                expect(response.body).toEqual(
+                    expect.objectContaining({
+                        success: false,
+                        message: 'not found'
+                    })
+                )
+            })
+        )
+    })
+})
+
+describe('Make transactions', () => {
     it('POST /tx => make first tx', () => {
         return (
             request(app)
@@ -181,7 +200,6 @@ describe('Wallet', () => {
             .expect('Content-Type', /json/)
             .expect(404)
             .then((response) => {
-                console.log(response.body)
                 expect(response.body).toEqual(
                     expect.objectContaining({
                         success: false,
@@ -192,7 +210,7 @@ describe('Wallet', () => {
         )
     })
 
-    it('GET /wallets => get all wallets', () => {
+    it('GET /wallets => compare wallet balance', () => {
         return (
             request(app)
             .get('/wallets')

@@ -30,7 +30,7 @@ router.get('/wallet/:id', function (req , res, next) {
     )
 
     if (!wallet) {
-        return next(createError(404, 'Not Found'))
+        return res.status(404).json({ success: false, message: 'not found' })
     }
 
     res.json(wallet)
