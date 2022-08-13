@@ -2,8 +2,6 @@ const express       = require('express')
 
 const router        = express.Router()
 
-const createError   = require('http-errors')
-
 
 const wallets       = []
 const txs           = []
@@ -30,7 +28,7 @@ router.get('/wallet/:id', function (req , res, next) {
     )
 
     if (!wallet) {
-        return res.status(404).json({ success: false, message: 'not found' })
+        return res.status(404).json({ message: 'not found' })
     }
 
     res.json(wallet)
@@ -51,7 +49,7 @@ router.post('/tx', function (req , res) {
     const wTo       = wallets.find(({ id }) => id === Number(to))
 
     if (wFrom.balance < amount) {
-        return res.status(404).json({ success: false, message: 'invalid balance' })
+        return res.status(404).json({ message: 'invalid balance' })
     }
 
     wFrom.balance               -= Number(amount)

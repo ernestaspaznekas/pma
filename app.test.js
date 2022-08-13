@@ -1,44 +1,44 @@
-const request = require('supertest')
+const request   = require('supertest')
 
-const app = require('./app')
+const app       = require('./app')
 
 const wallets = [
     {
-        name: 'wallet_1',
-        currency: 'ETH',
+        name:           'wallet_1',
+        currency:       'ETH',
         initialBalance: 2.03,
     },
     {
-        name: 'wallet_2',
-        currency: 'ETH',
+        name:           'wallet_2',
+        currency:       'ETH',
         initialBalance: 0,
     },
 ]
 
 const txs = [
     {
-        from: 0,
-        to: 1,
-        amount: 0.01,
-        currency: "ETH",
+        from:       0,
+        to:         1,
+        amount:     0.01,
+        currency:   'ETH',
     },
     {
-        from: 1,
-        to: 0,
-        amount: 0.005,
-        currency: "ETH",
+        from:       1,
+        to:         0,
+        amount:     0.005,
+        currency:   'ETH',
     },
     {
-        from: 0,
-        to: 1,
-        amount: 0.02,
-        currency: "ETH",
+        from:       0,
+        to:         1,
+        amount:     0.02,
+        currency:   'ETH',
     },
     {
-        from: 1,
-        to: 0,
-        amount: 2,
-        currency: "ETH",
+        from:       1,
+        to:         0,
+        amount:     2,
+        currency:   'ETH',
     },
 ]
 
@@ -53,9 +53,9 @@ describe('Test wallet', () => {
             .then((response) => {
                 expect(response.body).toEqual(
                     expect.objectContaining({
-                        name: wallets[0].name,
-                        balance: wallets[0].initialBalance,
-                        currency: wallets[0].currency,
+                        name:       wallets[0].name,
+                        balance:    wallets[0].initialBalance,
+                        currency:   wallets[0].currency,
                     })
                 )
             })
@@ -71,11 +71,11 @@ describe('Test wallet', () => {
             .then((response) => {
                 expect(response.body).toEqual(
                     expect.objectContaining({
-                        name: wallets[0].name,
-                        balance: wallets[0].initialBalance,
-                        currency: wallets[0].currency,
-                        createdAt: expect.any(String),
-                        id: 0,
+                        balance:    wallets[0].initialBalance,
+                        createdAt:  expect.any(String),
+                        currency:   wallets[0].currency,
+                        id:         0,
+                        name:       wallets[0].name,
                     })
                 )
             })
@@ -92,9 +92,9 @@ describe('Test wallet', () => {
             .then((response) => {
                 expect(response.body).toEqual(
                     expect.objectContaining({
-                        name: wallets[1].name,
-                        balance: wallets[1].initialBalance,
-                        currency: wallets[1].currency,
+                        balance:    wallets[1].initialBalance,
+                        currency:   wallets[1].currency,
+                        name:       wallets[1].name,
                     })
                 )
             })
@@ -111,11 +111,11 @@ describe('Test wallet', () => {
             .then((response) => {
                 expect(response.body).toEqual(
                     expect.objectContaining({
-                        name: wallets[1].name,
-                        balance: wallets[1].initialBalance,
-                        currency: wallets[1].currency,
-                        createdAt: expect.any(String),
-                        id: 1,
+                        balance:    wallets[1].initialBalance,
+                        createdAt:  expect.any(String),
+                        currency:   wallets[1].currency,
+                        id:         1,
+                        name:       wallets[1].name,
                     })
                 )
             })
@@ -131,7 +131,6 @@ describe('Test wallet', () => {
             .then((response) => {
                 expect(response.body).toEqual(
                     expect.objectContaining({
-                        success: false,
                         message: 'not found'
                     })
                 )
@@ -202,7 +201,6 @@ describe('Test transactions', () => {
             .then((response) => {
                 expect(response.body).toEqual(
                     expect.objectContaining({
-                        success: false,
                         message: 'invalid balance'
                     })
                 )
@@ -221,19 +219,19 @@ describe('Test transactions', () => {
                     expect.objectContaining({
                         wallets: [
                             {
-                                balance: 0.025,
-                                createdAt: expect.any(String),
-                                currency: wallets[1].currency,
-                                id: expect.any(Number),
-                                name: wallets[1].name,
+                                balance:            0.025,
+                                createdAt:          expect.any(String),
+                                currency:           wallets[1].currency,
+                                id:                 expect.any(Number),
+                                name:               wallets[1].name,
                                 todayBalanceChange: 0.025,
                             },
                             {
-                                balance: 2.005,
-                                createdAt: expect.any(String),
-                                currency: wallets[0].currency,
-                                id: expect.any(Number),
-                                name: wallets[0].name,
+                                balance:            2.005,
+                                createdAt:          expect.any(String),
+                                currency:           wallets[0].currency,
+                                id:                 expect.any(Number),
+                                name:               wallets[0].name,
                                 todayBalanceChange: -0.025,
                             },
                         ]
