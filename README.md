@@ -2,8 +2,8 @@
 
 ## how to use it
 
-### run npm install in directory
+### run `npm install` in directory
 
-### run npm start or npm run dev to start a server
+### run `npm start` or `npm run dev` to start a server
 
-### npm run test to start test coverage
+### run `npm run test` to start test coverage
