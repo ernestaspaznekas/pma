@@ -42,7 +42,7 @@ const txs = [
     },
 ]
 
-describe('Creat wallets', () => {
+describe('Test wallet', () => {
     it('POST /wallet => create first wallet', () => {
         return (
             request(app)
@@ -102,7 +102,7 @@ describe('Creat wallets', () => {
     })
 
 
-    it('GET /wallet/0 => get second wallet', () => {
+    it('GET /wallet/1 => get second wallet', () => {
         return (
             request(app)
             .get('/wallet/1')
@@ -140,7 +140,7 @@ describe('Creat wallets', () => {
     })
 })
 
-describe('Make transactions', () => {
+describe('Test transactions', () => {
     it('POST /tx => make first tx', () => {
         return (
             request(app)
